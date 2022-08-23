@@ -8,7 +8,10 @@ string GetVseNub (int nub)
     string vseNub = string.Empty;
     for (int i = 1; i <= nub; i++)
     {
-        vseNub += $"{i} ";
+        if (i % 2 == 0)
+        {
+            vseNub += $"{i} ";
+        }
     }
     return vseNub;
 }
