@@ -13,7 +13,7 @@ int GetNubArray (int index)
     return nubArray[index];
 }
 
-string GetNub (int n)
+string GetNub ()
 {
     int chetNub = 0, nechetNub = 0;
     for (int i = 0; i < 10; i++)
@@ -33,7 +33,7 @@ string GetNub (int n)
 
 
 Console.WriteLine("поиск четных и нечетных чисел:");
-Console.Write(GetNub(0));
+Console.Write(GetNub());
 
 
 
