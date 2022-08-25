@@ -5,13 +5,13 @@
 
 string GetShetNub (int nub)
 {
-    if (nub % 2 == 1)
+    if (nub % 2 == 0)
     {
-        return "число не четное";
+        return "число четное";
     }
     else
     {
-        return "число четное";
+        return "число не четное";
     }
 }
 
