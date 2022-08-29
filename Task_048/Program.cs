@@ -3,33 +3,42 @@
 //          Программма:
 
 
-int GetArrayNumbs (int indsexA, int indexB)
+int[,] GetFillArrayNumbers (int columns, int rows)
 {
-    int[,] arrayNubs = new int[10, 10];
-    for (int i = 0; i < 10; i++)
+    int[,] fillArrayNumbers = new int[columns, rows];
+    for (int i = 0; i < fillArrayNumbers.GetLength(0); i++)
     {
-        for (int j = 0; j < 10; j++)
+        for (int j = 0; j < fillArrayNumbers.GetLength(1); j++)
         {
-            arrayNubs[i, j] = new Random().Next(0, 50);
+            fillArrayNumbers[i, j] = new Random().Next(0, 50);
         }
     }
-    return arrayNubs[indsexA, indexB];
+    return fillArrayNumbers;
 }
 
 
 
-void PrintArrayNumbs ()
+void Print (int[,] fillArrayNumbers)
 {
-    for (int i = 0; i < 10; i++)
+    int columns = fillArrayNumbers.GetLength(0);
+    int rows = fillArrayNumbers.GetLength(1);
+    for (int i = 0; i < columns; i++)
     {
-        for (int j = 0; j < 10; j++)
+        for (int j = 0; j < rows; j++)
         {
-            Console.Write($"{GetArrayNumbs(i, j)}  ");
+            Console.Write($"{fillArrayNumbers[i, j]:d3} ");
         }
         Console.WriteLine();
     }
 }
 
+
+Console.Write("введите количество столбцов двумерного массива - ");
+int columns = Convert.ToInt32(Console.ReadLine());
+Console.Write("введите количество строк двумерного массива - ");
+int rows = Convert.ToInt32(Console.ReadLine());
+int[,] fillArray = GetFillArrayNumbers(columns, rows);
+Console.WriteLine();
 Console.WriteLine("двумерный масив случайных чисел : ");
-PrintArrayNumbs();
+Print(fillArray);
 

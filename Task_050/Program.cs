@@ -3,57 +3,66 @@
 //            Программа:
 
 
-int[,] arrayNumbs = {
-    {2, 4, 6, 7, 9, 1, 3, 5, 7, 1},
-    {2, 4, 6, 7, 9, 1, 3, 5, 7, 1},
-    {2, 4, 6, 7, 9, 1, 3, 5, 7, 1},
-    {2, 4, 6, 7, 9, 1, 3, 5, 7, 1},
-    {2, 4, 6, 7, 9, 1, 3, 5, 7, 1},
-    {2, 4, 6, 7, 9, 1, 3, 5, 7, 1},
-    {2, 4, 6, 7, 9, 1, 3, 5, 7, 1},
-    {2, 4, 6, 7, 9, 1, 3, 5, 7, 1},
-    {2, 4, 6, 7, 9, 1, 3, 5, 7, 1},
-    {2, 4, 6, 7, 9, 1, 3, 5, 7, 1},
-}; 
-
-
-double GetNewArrayNumbs (int indexA, int indexB)
+int[,] GetFillArrayNumbers (int columns, int rows, int n)
 {
-    double[,] newArrayNubs = new double[10, 10];
-    for (int i = 0; i < 10; i++)
+    int[,] fillArrayNumbers = new int[columns, rows];
+    for (int i = 0; i < fillArrayNumbers.GetLength(0); i++)
     {
-        for (int j = 0; j < 10; j++)
+        for (int j = 0; j < fillArrayNumbers.GetLength(1); j++)
+        {
+            fillArrayNumbers[i, j] = new Random().Next(0, n);
+        }
+    }
+    return fillArrayNumbers;
+}
+
+
+int[,] GetNewArrayNumbs (int[,] array)
+{
+    int[,] newArrayNubs = new int[array.GetLength(0), array.GetLength(1)];
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        for (int j = 0; j < array.GetLength(1); j++)
         {
             
-            if (arrayNumbs[i, j] % 2 == 0)
+            if (array[i, j] % 2 == 0)
             {
-                newArrayNubs[i, j] = arrayNumbs[i, j] * -1;
+                newArrayNubs[i, j] = array[i, j] * -1;
             }
             else
             {
-                newArrayNubs[i, j] = arrayNumbs[i, j];
+                newArrayNubs[i, j] = array[i, j];
             }
         }
     }
-    return newArrayNubs[indexA, indexB];
+    return newArrayNubs;
 }
 
-void PrintArrayNumbs ()
+void Print (int[,] fillArrayNumbers)
 {
-    for (int i = 0; i < 10; i++)
+    int columns = fillArrayNumbers.GetLength(0);
+    int rows = fillArrayNumbers.GetLength(1);
+    for (int i = 0; i < columns; i++)
     {
-        for (int j = 0; j < 10; j++)
+        for (int j = 0; j < rows; j++)
         {
-            Console.Write($"{GetNewArrayNumbs(i, j)}  ");
+            Console.Write($"{fillArrayNumbers[i, j]}  ");
         }
         Console.WriteLine();
     }
 }
 
+Console.Write("введите количество столбцов двумерного массива - ");
+int columns = Convert.ToInt32(Console.ReadLine());
+Console.Write("введите количество строк двумерного массива - ");
+int rows = Convert.ToInt32(Console.ReadLine());
+Console.Write("введите число от 0 до - ");
+int n = Convert.ToInt32(Console.ReadLine());
+int[,] fillArray = GetFillArrayNumbers(columns, rows, n);
+Console.WriteLine();
 Console.WriteLine("двумерный масив случайных чисел : ");
-PrintArrayNumbs();
-
-
-
-
+Print(fillArray);
+Console.WriteLine();
+int[,] newArray = GetNewArrayNumbs(fillArray);
+Print(newArray);
 
